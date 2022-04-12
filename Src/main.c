@@ -113,6 +113,9 @@ int16_t dc_curr;                 // global variable for Total DC Link current
 int16_t cmdL;                    // global variable for Left Command 
 int16_t cmdR;                    // global variable for Right Command 
 
+extern int16_t odom_r;
+extern int16_t odom_l;
+
 //------------------------------------------------------------------------
 // Local variables
 //------------------------------------------------------------------------
@@ -454,8 +457,8 @@ int main(void) {
         Feedback.start	        = (uint16_t)SERIAL_START_FRAME;
         Feedback.cmd1           = (int16_t)input1[inIdx].cmd;
         Feedback.cmd2           = (int16_t)input2[inIdx].cmd;
-        Feedback.speedR_meas	  = (int16_t)rtY_Right.n_mot;
-        Feedback.speedL_meas	  = (int16_t)rtY_Left.n_mot;
+        Feedback.speedR_meas	  = (int16_t)odom_r; //rtY_Right.a_elecAngle;//rtU_Right.a_mechAngle; //rtY_Right.a_elecAngle; //n_mot;
+        Feedback.speedL_meas	  = (int16_t)odom_l; //rtY_Left.a_elecAngle; //mechAngle; //elecAngle; //n_mot;
         Feedback.batVoltage	    = (int16_t)batVoltageCalib;
         Feedback.boardTemp	    = (int16_t)board_temp_deg_c;
 
